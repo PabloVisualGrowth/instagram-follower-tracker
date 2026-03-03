@@ -27,9 +27,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application
 COPY . .
 
-# Expose the port (Railway/Render use PORT env var)
+# Expose the port (Railway/Render/Easypanel use PORT env var)
 EXPOSE 5001
 
 # Command to run the application
-# We use gunicorn for production
-CMD ["gunicorn", "--bind", "0.0.0.0:5001", "server:app"]
+# We use gunicorn with dynamic port binding
+CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-5001} server:app"]
