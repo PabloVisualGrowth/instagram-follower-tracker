@@ -4,3 +4,4 @@ selenium
 python-dotenv
 webdriver-manager
 gunicorn
+requests
