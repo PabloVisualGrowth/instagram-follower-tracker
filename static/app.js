@@ -13,12 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const screenshotImg = document.getElementById('screenshot-img');
 
     runBtn.addEventListener('click', async () => {
-        // UI State: Running
         runBtn.disabled = true;
         btnContent.classList.add('hidden');
         loader.classList.remove('hidden');
         statusText.innerText = "Ejecutando bot... por favor espera";
-        dot.style.backgroundColor = "#ff9800"; // Orange
+        dot.style.backgroundColor = "#ff9800";
         dot.style.boxShadow = "0 0 10px #ff9800";
 
         try {
@@ -30,11 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.success) {
                 renderResults(data);
                 statusText.innerText = "Escaneo completado con éxito";
-                dot.style.backgroundColor = "#00f260"; // Green
+                dot.style.backgroundColor = "#00f260";
                 dot.style.boxShadow = "0 0 10px #00f260";
             } else {
                 statusText.innerText = "Error: " + data.error;
-                dot.style.backgroundColor = "#ff416c"; // Red
+                dot.style.backgroundColor = "#ff416c";
                 dot.style.boxShadow = "0 0 10px #ff416c";
             }
         } catch (error) {
@@ -49,13 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderResults(data) {
         resultsArea.classList.remove('hidden');
-
-        // Update stats
         newCount.innerText = data.changes.new_followers.length;
         unfollowCount.innerText = data.changes.unfollowers.length;
         totalCount.innerText = data.followers.length;
 
-        // Update list
         followersList.innerHTML = '';
         data.followers.sort().forEach((name, index) => {
             const item = document.createElement('div');
@@ -68,8 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
             followersList.appendChild(item);
         });
 
-        // Update screenshot
-        // Add timestamp to prevent caching
         screenshotImg.src = `/screenshots/ultimo_scrappeo.png?t=${new Date().getTime()}`;
     }
 });

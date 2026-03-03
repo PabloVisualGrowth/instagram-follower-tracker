@@ -9,6 +9,7 @@
     --text-muted: rgba(255, 255, 255, 0.6);
     --green: #00f260;
     --red: #ff416c;
+    --color-purple: #bb86fc;
 }
 
 * {
@@ -219,7 +220,7 @@ header h1 {
 }
 
 .color-purple {
-    color: #bb86fc;
+    color: var(--color-purple);
 }
 
 /* Lists and Content */
@@ -262,6 +263,18 @@ h3 {
     align-items: center;
     gap: 0.8rem;
     animation: fadeIn 0.5s ease backwards;
+}
+
+.follower-avatar {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.8rem;
 }
 
 @keyframes fadeIn {
