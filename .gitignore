@@ -1,9 +1,13 @@
 .env
 __pycache__/
 *.png
-*.html
+# Ignore temporary logs and data
 *.json
+*.html
+# Whitelist critical files
+!index.html
 !vercel.json
+!followers.json
 venv/
 .venv/
 node_modules/
