@@ -3,12 +3,20 @@ from flask_cors import CORS
 import os
 from instagram_bot import run_bot
 
-app = Flask(__name__, static_url_path="", static_folder=".", template_folder=".")
-CORS(app) # Enable CORS for frontend development
+app = Flask(__name__, static_folder=".", template_folder=".")
+CORS(app)
 
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/style.css")
+def serve_css():
+    return send_from_directory(".", "style.css", mimetype="text/css")
+
+@app.route("/app.js")
+def serve_js():
+    return send_from_directory(".", "app.js", mimetype="application/javascript")
 
 @app.route("/run-bot", methods=["POST"])
 def execute_bot():
@@ -25,10 +33,6 @@ def health():
     return "OK", 200
 
 if __name__ == "__main__":
-    # Ensure frontend folder exists
-    if not os.path.exists("frontend"):
-        os.makedirs("frontend")
-    
     port = int(os.environ.get("PORT", 5001))
     print(f"Servidor iniciado en http://localhost:{port}")
     app.run(host="0.0.0.0", port=port)
